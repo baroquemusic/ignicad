@@ -37,7 +37,7 @@ class KalyhaC3DAdmin {
 
     function loginDB() {
 
-	$this->connection = mysql_connect($this->hostname, $this->dbusername, $this->password);
+	$this->connection = mysqli_connect($this->hostname, $this->dbusername, $this->password);
 
 	if (!$this->connection) {
 	    $this->HandleDBError("Database Login failed! Please make sure that the DB login credentials provided are correct");
