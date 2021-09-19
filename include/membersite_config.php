@@ -8,10 +8,10 @@ $fgmembersite -> SetWebsiteName('ignicad.com');
 
 $fgmembersite -> SetAdminEmail('registration@ignicad.com');
 
-$fgmembersite -> InitDB(/*hostname*/'eagleaircraftch.ipagemysql.com',
-/*username*/'ignicad_com',
-/*password*/'nxYrAf0p2D',
-/*database name*/'ignicad_com',
+$fgmembersite -> InitDB(/*hostname*/'sql3.freesqldatabase.com',
+/*username*/'sql3438272',
+/*password*/'G6C7lXK5WM',
+/*database name*/'sql3438272',
 /*table name*/'felhasznalok');
 
 //http://tinyurl.com/randstr
@@ -26,10 +26,10 @@ $fgmembersite_log -> SetWebsiteName('ignicad.com');
 
 $fgmembersite_log -> SetAdminEmail('registration@ignicad.com');
 
-$fgmembersite_log -> InitDB(/*hostname*/'eagleaircraftch.ipagemysql.com',
-/*username*/'ignicad_com',
-/*password*/'nxYrAf0p2D',
-/*database name*/'ignicad_com',
+$fgmembersite_log -> InitDB(/*hostname*/'sql3.freesqldatabase.com',
+/*username*/'sql3438272',
+/*password*/'G6C7lXK5WM',
+/*database name*/'sql3438272',
 /*table name*/'felhasznalok');
 
 //http://tinyurl.com/randstr
