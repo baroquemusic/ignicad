@@ -7,6 +7,6 @@ session_start();
 
 $admin -> session_user_id = $_SESSION['id_of_user'];
 
-$admin -> initDB('eagleaircraftch.ipagemysql.com', 'ignicad_com', 'nxYrAf0p2D', 'ignicad_com', 'felhasznalok', 'utalasok', 'kuponok', 'projektek');
+$admin -> initDB('sql3.freesqldatabase.com', 'sql3438272', 'G6C7lXK5WM', 'sql3438272', 'felhasznalok', 'utalasok', 'kuponok', 'projektek');
 
 ?>
