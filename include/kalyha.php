@@ -83,7 +83,7 @@ class KalyhaC3D {
 	
 	$this->agent = mysql_real_escape_string($_SERVER['HTTP_USER_AGENT']);
 	
-	$this->connection = mysqli_connect($this->hostname, $this->username, $this->password);
+	$this->connection = mysql_connect($this->hostname, $this->username, $this->password);
 
 	if (!$this->connection) {
 	    $this->HandleDBError("Database Login failed! Please make sure that the DB login credentials provided are correct");
