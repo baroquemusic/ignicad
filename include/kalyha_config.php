@@ -7,6 +7,6 @@ session_start();
 
 $kalyha -> session_user_id = $_SESSION['id_of_user'];
 
-$kalyha -> initDB('eagleaircraftch.ipagemysql.com', 'ignicad_com', 'nxYrAf0p2D', 'ignicad_com', 'felhasznalok', 'projektek', 'fustjaratok');
+$kalyha -> initDB('sql3.freesqldatabase.com', 'sql3438272', 'G6C7lXK5WM', 'sql3438272', 'felhasznalok', 'projektek', 'fustjaratok');
 
 ?>
