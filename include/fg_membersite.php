@@ -702,7 +702,7 @@ class FGMembersite {
 
     function DBLogin() {
 
-	$this->connection = mysqli_connect($this->db_host, $this->username, $this->pwd);
+	$this->connection = mysql_connect($this->db_host, $this->username, $this->pwd);
 
 	if (!$this->connection) {
 	    $this->HandleDBError("Database Login failed! Please make sure that the DB login credentials provided are correct");
