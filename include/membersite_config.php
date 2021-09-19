@@ -4,7 +4,7 @@ require_once ("./include/fg_membersite.php");
 
 $fgmembersite = new FGMembersite();
 
-$fgmembersite -> SetWebsiteName('ignicad.com');
+$fgmembersite -> SetWebsiteName('ignicad.herokuapp.com');
 
 $fgmembersite -> SetAdminEmail('registration@ignicad.com');
 
@@ -22,7 +22,7 @@ $fgmembersite -> SetRandomKey('WFmxMracp5HYlxG');
 
 $fgmembersite_log = new FGMembersite();
 
-$fgmembersite_log -> SetWebsiteName('ignicad.com');
+$fgmembersite_log -> SetWebsiteName('ignicad.herokuapp.com');
 
 $fgmembersite_log -> SetAdminEmail('registration@ignicad.com');
 
