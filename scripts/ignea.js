@@ -915,7 +915,7 @@ function vanemarkalyhaja(ezt) {
 	    if (ezjottvissza == "nincs") {
 		init();
 	    } else {
-		var adat = JSON.parse(ezjottvissza);
+		var adat = JSON.stringify(ezjottvissza);
 		document.getElementById("ora").value = Number(adat.ora);
 		document.getElementById("fa").value = Number(adat.fa);
 		document.getElementById("kw").value = Number(adat.kw);
@@ -1049,7 +1049,7 @@ function vanemarfustjarata() {
 		szurke.appendChild(nincsmegfustje);
 
 	    } else {
-		var adat = JSON.parse(ezjottvisszafust);
+		var adat = JSON.stringify(ezjottvisszafust);
 		
 		var i = 0;
 		var egyenkentkell = function(ezazarray) {
@@ -1153,7 +1153,7 @@ function csakszamit() {
     xmlhttp_csakszamit.onreadystatechange = function() {
 	if (xmlhttp_csakszamit.readyState == 4 && xmlhttp_csakszamit.status == 200) {
 		ezjottvissza = xmlhttp_csakszamit.responseText;
-		szamitas = JSON.parse(ezjottvissza);
+		szamitas = JSON.stringify(ezjottvissza);
 		diplayfustjaratok = document.createTextNode("Calculations are loaded!");
 		while (adatstatusfust.hasChildNodes()) { adatstatusfust.removeChild(adatstatusfust.lastChild); }
 		zold = document.createElement("div");
@@ -1465,7 +1465,7 @@ if (!inithivas) {
     xmlhttp_fustjaratok.onreadystatechange = function() {
 	if (xmlhttp_fustjaratok.readyState == 4 && xmlhttp_fustjaratok.status == 200) {
 	    ezjottvissza = xmlhttp_fustjaratok.responseText;
-	    szamitas = JSON.parse(ezjottvissza);
+	    szamitas = JSON.stringify(ezjottvissza);
 
 	    while (adatstatusfust.hasChildNodes()) { adatstatusfust.removeChild(adatstatusfust.lastChild); }
 	    diplayfustjaratok = document.createTextNode("Flue pipes are saved!");

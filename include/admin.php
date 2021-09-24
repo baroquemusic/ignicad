@@ -37,17 +37,17 @@ class KalyhaC3DAdmin {
 
     function loginDB() {
 
-	$this->connection = mysql_connect($this->hostname, $this->dbusername, $this->password);
+	$this->connection = mysqli_connect($this->hostname, $this->dbusername, $this->password);
 
 	if (!$this->connection) {
 	    $this->HandleDBError("Database Login failed! Please make sure that the DB login credentials provided are correct");
 	    return false;
 	}
-	if (!mysql_select_db($this->database, $this->connection)) {
+	if (!mysqli_select_db($this->connection,$this->database)) {
 	    $this->HandleDBError('Failed to select database: ' . $this->database . ' Please make sure that the database name provided is correct');
 	    return false;
 	}
-	if (!mysql_query("SET NAMES 'UTF8'", $this->connection)) {
+	if (!mysqli_query($this->connection,"SET NAMES 'UTF8'")) {
 	    $this->HandleDBError('Error setting utf8 encoding');
 	    return false;
 	}
@@ -59,13 +59,13 @@ class KalyhaC3DAdmin {
 	    $this->HandleError("Database login failed!");
 	    return false;
 	}
-	$export = mysql_query("SELECT * FROM $this->felhasznalok", $this->connection);
-	$fields = mysql_num_fields ( $export );
+	$export = mysqli_query($this->connection,"SELECT * FROM $this->felhasznalok");
+	$fields = mysqli_num_fields( $export );
 	for ( $i = 0; $i < $fields; $i++ )
 	{
 	    $this->header .= mysql_field_name( $export , $i ) . "\t";
 	}
-	while( $row = mysql_fetch_row( $export ) )
+	while( $row = mysqli_fetch_row( $export ) )
 	{
 	    $line = '';
 	    foreach( $row as $value )
@@ -96,13 +96,13 @@ class KalyhaC3DAdmin {
 	    $this->HandleError("Database login failed!");
 	    return false;
 	}
-	$export = mysql_query("SELECT * FROM $this->projektek", $this->connection);
-	$fields = mysql_num_fields ( $export );
+	$export = mysqli_query($this->connection,"SELECT * FROM $this->projektek");
+	$fields = mysqli_num_fields( $export );
 	for ( $i = 0; $i < $fields; $i++ )
 	{
 	    $this->header .= mysql_field_name( $export , $i ) . "\t";
 	}
-	while( $row = mysql_fetch_row( $export ) )
+	while( $row = mysqli_fetch_row( $export ) )
 	{
 	    $line = '';
 	    foreach( $row as $value )
@@ -133,13 +133,13 @@ class KalyhaC3DAdmin {
 	    $this->HandleError("Database login failed!");
 	    return false;
 	}
-	$export = mysql_query("SELECT * FROM $this->utalasok", $this->connection);
-	$fields = mysql_num_fields ( $export );
+	$export = mysqli_query($this->connection,"SELECT * FROM $this->utalasok");
+	$fields = mysqli_num_fields( $export );
 	for ( $i = 0; $i < $fields; $i++ )
 	{
 	    $this->header .= mysql_field_name( $export , $i ) . "\t";
 	}
-	while( $row = mysql_fetch_row( $export ) )
+	while( $row = mysqli_fetch_row( $export ) )
 	{
 	    $line = '';
 	    foreach( $row as $value )
@@ -170,13 +170,13 @@ class KalyhaC3DAdmin {
 	    $this->HandleError("Database login failed!");
 	    return false;
 	}
-	$export = mysql_query("SELECT * FROM $this->kuponok", $this->connection);
-	$fields = mysql_num_fields ( $export );
+	$export = mysqli_query($this->connection,"SELECT * FROM $this->kuponok");
+	$fields = mysqli_num_fields( $export );
 	for ( $i = 0; $i < $fields; $i++ )
 	{
 	    $this->header .= mysql_field_name( $export , $i ) . "\t";
 	}
-	while( $row = mysql_fetch_row( $export ) )
+	while( $row = mysqli_fetch_row( $export ) )
 	{
 	    $line = '';
 	    foreach( $row as $value )
@@ -207,14 +207,14 @@ class KalyhaC3DAdmin {
 	    $this->HandleError("Database login failed!");
 	    return false;
 	}
-	$kuponokbol = mysql_query("SELECT id_user FROM $this->kuponok WHERE coupon = '$this->feltolt'", $this->connection);
-	if (!$kuponokbol || mysql_num_rows($kuponokbol) <= 0) {
+	$kuponokbol = mysqli_query($this->connection,"SELECT id_user FROM $this->kuponok WHERE coupon = '$this->feltolt'");
+	if (!$kuponokbol || mysqli_num_rows($kuponokbol) <= 0) {
 	    return false;
 	} else {
-	    $kuponuser = mysql_fetch_assoc($kuponokbol);
+	    $kuponuser = mysqli_fetch_assoc($kuponokbol);
 	    if ($kuponuser['id_user'] == 0) {
 		$update = 'UPDATE ' . $this->kuponok . ' SET id_user = "' . $this->session_user_id . '" WHERE coupon = "' . $this->feltolt . '"';
-		mysql_query($update, $this->connection);
+		mysqli_query($this->connection,$update);
 		return true;
 	    } else {
 		return false;
@@ -231,17 +231,17 @@ class KalyhaC3DAdmin {
 	    return false;
 	}
 
-	$utalasokbol = mysql_query("SELECT amount, unit_price FROM $this->utalasok WHERE id_user = '$this->session_user_id'", $this->connection);
+	$utalasokbol = mysqli_query($this->connection,"SELECT amount, unit_price FROM $this->utalasok WHERE id_user = '$this->session_user_id'");
 	$utalsum = 0;
-	while ($row = mysql_fetch_assoc($utalasokbol)) {
+	while ($row = mysqli_fetch_assoc($utalasokbol)) {
 	    $utalsum += floor($row["amount"] / $row["unit_price"]);
 	}
 
-	$kuponokbol = mysql_query("SELECT coupon FROM $this->kuponok WHERE id_user = '$this->session_user_id'", $this->connection);
-	if (!$kuponokbol || mysql_num_rows($kuponokbol) <= 0) {
+	$kuponokbol = mysqli_query($this->connection,"SELECT coupon FROM $this->kuponok WHERE id_user = '$this->session_user_id'");
+	if (!$kuponokbol || mysqli_num_rows($kuponokbol) <= 0) {
 	    $kuponsum = 0;
 	} else {
-	    $kuponsum = mysql_num_rows($kuponokbol);
+	    $kuponsum = mysqli_num_rows($kuponokbol);
 	}
 
 	$this->balance = $utalsum + $kuponsum;
@@ -278,8 +278,8 @@ class KalyhaC3DAdmin {
 	    "' . $this->admin_notes . '"
 	    )';
 
-	mysql_query($insert_query, $this->connection);
-	$this->insertid = mysql_insert_id();
+	mysqli_query($this->connection,$insert_query);
+	$this->insertid = mysqli_insert_id($this->connection);
 
 	if (!$this->kupontGeneral()) {
 	    return false;
@@ -298,8 +298,8 @@ class KalyhaC3DAdmin {
 	    for ($i = 0; $i < 5; $i++) {
 		$kod .= $chars[mt_rand(0, strlen($chars) - 1)];
 	    }
-	    $result = mysql_query("SHOW COLUMNS FROM $this->kuponok WHERE coupon = " . $kod);
-	    if (!$result || mysql_num_rows($result) <= 0) {
+	    $result = mysqli_query($this->connection,"SHOW COLUMNS FROM $this->kuponok WHERE coupon = " . $kod);
+	    if (!$result || mysqli_num_rows($result) <= 0) {
 		$insert_query = 'INSERT INTO ' . $this->kuponok . ' (
 		    id_transaction,
 		    id_user_admin,
@@ -311,7 +311,7 @@ class KalyhaC3DAdmin {
 		    "' . $this->session_user_id . '",
 		    "' . $kod . '"
 		    )';
-		if (!mysql_query($insert_query, $this->connection)) {
+		if (!mysqli_query($this->connection,$insert_query)) {
 		    $this->HandleDBError("Error inserting data to the table\nquery:$insert_query");
 		    return false;
 		}
@@ -357,7 +357,7 @@ class KalyhaC3DAdmin {
 	    "' . $this->id_user . '",
 	    "' . $this->admin_notes . '"
 	    )';
-	if (!mysql_query($insert_query, $this->connection)) {
+	if (!mysqli_query($this->connection,$insert_query)) {
 	    $this->HandleDBError("Error inserting data to the table\nquery:$insert_query");
 	    return false;
 	}
@@ -369,8 +369,8 @@ class KalyhaC3DAdmin {
 	    $this->HandleError("Database login failed!");
 	    return false;
 	}
-	$result = mysql_query("SELECT * FROM $this->felhasznalok WHERE username = '$this->username'", $this->connection);
-	$this->valasz = mysql_fetch_assoc($result);
+	$result = mysqli_query($this->connection,"SELECT * FROM $this->felhasznalok WHERE username = '$this->username'");
+	$this->valasz = mysqli_fetch_assoc($result);
 	return true;
     }
 
@@ -380,7 +380,7 @@ class KalyhaC3DAdmin {
 	    return false;
 	}
 	$update_query = 'UPDATE ' . $this->felhasznalok . ' SET admin = "' . $this->jog . '" WHERE username = "' . $this->username . '"';
-	if (!mysql_query($update_query, $this->connection)) {
+	if (!mysqli_query($this->connection,$update_query)) {
 	    $this->HandleDBError("Error updating data to the table\nquery:$update_query");
 	    return false;
 	}
@@ -388,8 +388,8 @@ class KalyhaC3DAdmin {
     }
 
     function vaneUtalasokTabla() {
-	$result = mysql_query("SHOW COLUMNS FROM $this->utalasok");
-	if (!$result || mysql_num_rows($result) <= 0) {
+	$result = mysqli_query($this->connection,"SHOW COLUMNS FROM $this->utalasok");
+	if (!$result || mysqli_num_rows($result) <= 0) {
 	    return $this->csinaljUtalasokTablat();
 	}
 	return true;
@@ -413,7 +413,7 @@ admin_notes VARCHAR ( 512 ) DEFAULT '',
 
 PRIMARY KEY ( id_transaction ) )";
 
-	if (!mysql_query($qry, $this->connection)) {
+	if (!mysqli_query($this->connection,$qry)) {
 	    $this->HandleDBError("Error creating the table \nquery was\n $qry");
 	    return false;
 	}
@@ -421,8 +421,8 @@ PRIMARY KEY ( id_transaction ) )";
     }
 
     function vaneKuponokTabla() {
-	$result = mysql_query("SHOW COLUMNS FROM $this->kuponok");
-	if (!$result || mysql_num_rows($result) <= 0) {
+	$result = mysqli_query($this->connection,"SHOW COLUMNS FROM $this->kuponok");
+	if (!$result || mysqli_num_rows($result) <= 0) {
 	    return $this->csinaljKuponokTablat();
 	}
 	return true;
@@ -440,7 +440,7 @@ id_user INT ( 7 ) DEFAULT '0',
 
 PRIMARY KEY ( id_coupon ) )";
 
-	if (!mysql_query($qry, $this->connection)) {
+	if (!mysqli_query($this->connection,$qry)) {
 	    $this->HandleDBError("Error creating the table \nquery was\n $qry");
 	    return false;
 	}
@@ -462,7 +462,7 @@ PRIMARY KEY ( id_coupon ) )";
     }
 
     function HandleDBError($err) {
-	$this->HandleError($err . "\r\n MySQL error:" . mysql_error());
+	$this->HandleError($err . "\r\n MySQL error:" . mysqli_error($this->connection));
     }
 
     function GetSelfScript() {
@@ -471,7 +471,7 @@ PRIMARY KEY ( id_coupon ) )";
 
     function SanitizeForSQL($str) {
 	if (function_exists("mysql_real_escape_string")) {
-	    $ret_str = mysql_real_escape_string($str);
+	    $ret_str = mysqli_real_escape_string($this->connection,$str);
 	} else {
 	    $ret_str = addslashes($str);
 	}

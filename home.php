@@ -71,7 +71,7 @@ $_SESSION['balance'] = $vanneki - $elhasznalta;
 	. $lang['ENTERPRISE_TAX_NUMBER'] . '<input id="ent_taxnum" type="text" maxlength="16"'; if (!$_SESSION['balance'] || $_SESSION['balance'] == 0) { echo 'disabled'; }; echo '><br>';
     } else {
     $sorok =  array();
-    while ($row = mysql_fetch_assoc($kalyha->valasz)) {
+    while ($row = mysqli_fetch_assoc($kalyha->valasz)) {
     $sorok[] = $row;
     }
     $uccsosor = end($sorok);
@@ -96,7 +96,7 @@ $_SESSION['balance'] = $vanneki - $elhasznalta;
 		<?php echo $lang['ADDRESS_COUNTRY']; ?><input id="cus_addr_country" type="text" value="<?php echo $lang['COUNTRY']; ?>" maxlength="64"<?php if (!$_SESSION['balance'] || $_SESSION['balance'] == 0) { echo 'disabled'; } ?>>
 	    </div>
 	    <div class="adattarolo">
-		<?php echo '<button onclick="eltunik()" >' . $lang['CANCEL'] . '</button>&nbsp<button id="projzar" title="' . $lang['TITLE_CLOSE_PROJECT_BUTTON'] . '" onclick="projektlezaras()"' ?>
+		<?php echo '<button onclick="eltunik()" >' . $lang['CANCEL'] . '</button> <button id="projzar" title="' . $lang['TITLE_CLOSE_PROJECT_BUTTON'] . '" onclick="projektlezaras()"' ?>
 		<?php if (!$_SESSION['balance'] || $_SESSION['balance'] == 0) { echo 'disabled'; } ?>
 		<?php echo ' >' . $lang['CLOSE_PROJECT'] . '</button>'; ?>
 	    </div>
@@ -104,8 +104,8 @@ $_SESSION['balance'] = $vanneki - $elhasznalta;
 	
 	<div id="bodycontainer">
 	    <div id="header">
-		<div class="left"><object data="./images/ignicad.svg" type="image/svg+xml" ></object></div><div class="left"><span class="text"><?php echo $lang['EMAIL_DEAR']; echo $fgmembersite -> UserFullName(); ?>,&nbsp;<?php echo $lang['WELCOME_IN']; ?></span></div>
-		<div class="right"><span class="menu"><a href='balance.php' title="<?php echo $lang['TITLE_BALANCE']; ?>"><?php echo $lang['BALANCE']; ?></a>&nbsp;<a href='change-pwd.php'title="<?php echo $lang['TITLE_RESET_PASSWORD']; ?>"><?php echo $lang['RESET_PASSWORD']; ?></a>&nbsp;<a href='logout.php' title="<?php echo $lang['TITLE_LOGOUT']; ?>"><?php echo $lang['LOGOUT']; ?></a></span>&nbsp;<span class="version"><?php echo $lang['SOFTWARE_VERSION']; ?></span></div>
+		<div class="left"><object data="./images/ignicad.svg" type="image/svg+xml" ></object></div><div class="left"><span class="text"><?php echo $lang['EMAIL_DEAR']; echo $fgmembersite -> UserFullName(); ?>, <?php echo $lang['WELCOME_IN']; ?></span></div>
+		<div class="right"><span class="menu"><a href='balance.php' title="<?php echo $lang['TITLE_BALANCE']; ?>"><?php echo $lang['BALANCE']; ?></a> <a href='change-pwd.php'title="<?php echo $lang['TITLE_RESET_PASSWORD']; ?>"><?php echo $lang['RESET_PASSWORD']; ?></a> <a href='logout.php' title="<?php echo $lang['TITLE_LOGOUT']; ?>"><?php echo $lang['LOGOUT']; ?></a></span> <span class="version"><?php echo $lang['SOFTWARE_VERSION']; ?></span></div>
 	    </div>
 	    <div id="modules">
 		<div class="tabs">
@@ -129,23 +129,23 @@ $_SESSION['balance'] = $vanneki - $elhasznalta;
 			<input type="hidden" id="gomb" name="gomb" value="1" />
 		    </div>
 		    <div class="bevitel" title="<?php echo $lang['TITLE_COMBUSTION_CHAMBER2']; ?>">
-			<?php echo $lang['COMBUSTION_CHAMBER_SURFACE']; ?> O<sub>br</sub> <input type="number" title="<?php echo $lang['TITLE_COMBUSTION_CHAMBER_SURFACE']; ?>" id="tuzfel" name="tuzfel" onchange="valtoztuzfel(this.value)" style="width:100px;" /><input type="checkbox"  title="<?php echo $lang['TITLE_COMBUSTION_CHAMBER_SURFACE_CHECKBOX']; ?>" id="tuzfelcheck" name="tuzfelcheck" onchange="tuzfelcheck(this.checked)" checked />&nbsp; 
+			<?php echo $lang['COMBUSTION_CHAMBER_SURFACE']; ?> O<sub>br</sub> <input type="number" title="<?php echo $lang['TITLE_COMBUSTION_CHAMBER_SURFACE']; ?>" id="tuzfel" name="tuzfel" onchange="valtoztuzfel(this.value)" style="width:100px;" /><input type="checkbox"  title="<?php echo $lang['TITLE_COMBUSTION_CHAMBER_SURFACE_CHECKBOX']; ?>" id="tuzfelcheck" name="tuzfelcheck" onchange="tuzfelcheck(this.checked)" checked />  
 			<?php echo $lang['COMBUSTION_CHAMBER_HEIGHT']; ?> H<sub>br</sub> <input type="number" title="<?php echo $lang['TITLE_COMBUSTION_CHAMBER_HEIGHT']; ?>" id="egyeniy" name="egyeniy" max="200" value="40" onchange="egyeniy(this.value)" /><sub> <?php echo $lang['CENTIMETER_UNIT']; ?></sub><br>
 			<?php echo $lang['COMBUSTION_CHAMBER_AREA']; ?> A<sub>br</sub> <input type="number" title="<?php echo $lang['TITLE_COMBUSTION_CHAMBER_AREA']; ?>" id="tuzalap" name="tuzalap" onchange="valtoztuzalap(this.value)"  style="width:80px;" /><input type="checkbox" title="<?php echo $lang['TITLE_COMBUSTION_CHAMBER_AREA_CHECKBOX']; ?>" id="tuzalapcheck" name="tuzalapcheck" onchange="tuzalapcheck(this.checked)" checked />
-			= &nbsp;<input type="number" id="egyenix" title="<?php echo $lang['TITLE_COMBUSTION_CHAMBER_AREA_X']; ?>" name="egyenix" min="5" max="200" value="10" onchange="egyenix(this.value)" />
+			=  <input type="number" id="egyenix" title="<?php echo $lang['TITLE_COMBUSTION_CHAMBER_AREA_X']; ?>" name="egyenix" min="5" max="200" value="10" onchange="egyenix(this.value)" />
 			x <input type="number" id="egyeniz" title="<?php echo $lang['TITLE_COMBUSTION_CHAMBER_AREA_Y']; ?>" name="egyeniz" min="5" max="200" value="10" onchange="egyeniz(this.value)" /><sub> <?php echo $lang['CENTIMETER_UNIT']; ?></sub>
 		    </div>
 		    <div class="bevitel" title="<?php echo $lang['TITLE_COMBUSTION_CHAMBER3']; ?>">
 			<?php echo $lang['ELEVATION']; ?>
 			<input type="number" title="<?php echo $lang['TITLE_ELEVATION']; ?>" id="elevacio" name="elevacio" min="-200" max="8000" value="200" onchange="csocs()" /><sub> <?php echo $lang['ELEVATION_UNIT']; ?></sub>
-			&nbsp; <?php echo $lang['AIR_TEMPERATURE']; ?>
+			  <?php echo $lang['AIR_TEMPERATURE']; ?>
 			<input type="number" title="<?php echo $lang['TITLE_AIR_TEMPERATURE']; ?>" id="levegohom" name="levegohom" min="-40" max="30" value="20" onchange="csocs()" /><sub> <?php echo $lang['AIR_TEMPERATURE_UNIT']; ?></sub>
-			&nbsp; 
+			  
 			<select id="kalyhahej" title="<?php echo $lang['TITLE_SHELL']; ?>" name="kalyhahej" onchange="csocs()">
 				<option value="1.3"><?php echo $lang['SINGLE_SHELL']; ?></option><option value="1.5"><?php echo $lang['DOUBLE_SHELL']; ?></option>
 			</select>
 			<br>
-			<?php echo $lang['RESISTANCE_RANGE']; ?><sub><?php echo $lang['MIN']; ?></sub><input type="number" title="<?php echo $lang['TITLE_RESISTANCE_RANGE_MIN']; ?>" id="resmin" name="resmin" value="5" onchange="csocs()" />&nbsp;&mdash;
+			<?php echo $lang['RESISTANCE_RANGE']; ?><sub><?php echo $lang['MIN']; ?></sub><input type="number" title="<?php echo $lang['TITLE_RESISTANCE_RANGE_MIN']; ?>" id="resmin" name="resmin" value="5" onchange="csocs()" /> —
 			<sub><?php echo $lang['MAX']; ?></sub><input type="number" title="<?php echo $lang['TITLE_RESISTANCE_RANGE_MAX']; ?>" id="resmax" name="resmax" value="25" onchange="csocs()" /> <sub>Pa</sub>
 		    </div>
 		</div>
@@ -153,7 +153,7 @@ $_SESSION['balance'] = $vanneki - $elhasznalta;
 		    <div id="ujcsodiv0" title="<?php echo $lang['TITLE_COMBUSTION_CHAMBER_VENT1']; ?>" class="tuzbevitel" onmouseover="overkiir(0)" onmouseout="overtorol(0)">
 			<?php echo $lang['COMBUSTION_CHAMBER_VENT']; ?>
 			<select id="kilepo" title="<?php echo $lang['TITLE_COMBUSTION_CHAMBER_VENT']; ?>" name="kilepo" onchange="kilepooldal(this.value)">
-				<option value="0"><?php echo $lang['VENT_UP']; ?></option><option value="1"><?php echo $lang['VENT_LEFT']; ?></option><option value="2"><?php echo $lang['VENT_RIGHT']; ?></option><option value="3"><?php echo $lang['VENT_BACK']; ?></option><option value="4"><?php echo $lang['VENT_LEFT-RIGHT']; ?></option> &nbsp; &nbsp;
+				<option value="0"><?php echo $lang['VENT_UP']; ?></option><option value="1"><?php echo $lang['VENT_LEFT']; ?></option><option value="2"><?php echo $lang['VENT_RIGHT']; ?></option><option value="3"><?php echo $lang['VENT_BACK']; ?></option><option value="4"><?php echo $lang['VENT_LEFT-RIGHT']; ?></option>    
 			</select><br>
 			<input type="button" id="kozepre" title="<?php echo $lang['TITLE_VENT_CENTER']; ?>" value="<?php echo $lang['VENT_CENTER']; ?>" onclick="csokozepre()" />
 			<?php echo $lang['VENT_WIDTH']; ?><input type="number" title="<?php echo $lang['TITLE_VENT_WIDTH']; ?>" id="kileposzeles" name="kileposzeles" min="-200" max="200" value="0" onchange="csocs();" /><sub> <?php echo $lang['CENTIMETER_UNIT']; ?></sub>
@@ -187,17 +187,17 @@ $_SESSION['balance'] = $vanneki - $elhasznalta;
     . $lang['PROJECT_REMAINING'] . '<span class="cimsor" style="font-size:1.5em;" >' . $_SESSION['balance'] . '</span><br>
     <button id="megsem" title="' . $lang['TITLE_BACK_TO_EDIT'] . '" onclick="document.location.reload(true)" >' . $lang['BACK_TO_EDIT'] . '</button>
     <button id="projektzaras" title="' . $lang['TITLE_CLOSE_PROJECT'] . '" onclick="felugrik()" disabled >' . $lang['CLOSE_PROJECT'] . '</button></div>';
-    if (!$kalyha->valasz || mysql_num_rows($kalyha->valasz) <= 0) {
+    if (!$kalyha->valasz || mysqli_num_rows($kalyha->valasz) <= 0) {
 	echo '<div class="adattarolo" title="' . $lang['TITLE_NO_SAVED_PROJECT'] . '"><span class="cimsor">' . $lang['NO_SAVED_PROJECT'] . '</span></div>';
     } else {
 	echo '<div class="adattarolo" title="' . $lang['TITLE_SAVED_PROJECTS'] . '"><span class="cimsor">' . $lang['SAVED_PROJECTS'] . '</span><br>
-		<select title="' . $lang['TITLE_SAVED_PROJECTS_LIST'] . '" id="projektjeim" name="projektjeim" size="' . (mysql_num_rows($kalyha->valasz) + 1) . '" onchange="if(this.value) { vanemarkalyhaja(this.value); }" >';
+		<select title="' . $lang['TITLE_SAVED_PROJECTS_LIST'] . '" id="projektjeim" name="projektjeim" size="' . (mysqli_num_rows($kalyha->valasz) + 1) . '" onchange="if(this.value) { vanemarkalyhaja(this.value); }" >';
 	foreach ($sorok as $ertek) {
-	    echo '<option value="' . $ertek[id_project] . '">' . substr($ertek[issue_datetime], 0, 10) . ' &nbsp; ' . $ertek[project_name] . ' / ' . $ertek[cus_fullname] . '</option>';
+	    echo '<option value="' . $ertek[id_project] . '">' . substr($ertek[issue_datetime], 0, 10) . '   ' . $ertek[project_name] . ' / ' . $ertek[cus_fullname] . '</option>';
 	}
 	echo '</select>';
-	echo '</div><div class="adattarolo"><button title="' . $lang['TITLE_CLONE_PROJECT'] . '" id="projektklonozas" onclick="projektklonozas=true;kilepooldal()" disabled >' . $lang['CLONE_PROJECT'] . '</button>&nbsp;
-	    <button title="' . $lang['TITLE_INFO'] . '" id="info" onclick="felugrik()" disabled>Info</button>&nbsp;
+	echo '</div><div class="adattarolo"><button title="' . $lang['TITLE_CLONE_PROJECT'] . '" id="projektklonozas" onclick="projektklonozas=true;kilepooldal()" disabled >' . $lang['CLONE_PROJECT'] . '</button> 
+	    <button title="' . $lang['TITLE_INFO'] . '" id="info" onclick="felugrik()" disabled>Info</button> 
 	    <button title="' . $lang['TITLE_PRINT_PROJECT'] . '" id="projektnyomtatas" onclick="nyomtat()" disabled >' . $lang['PRINT_PROJECT'] . '</button></div>';
     }
 ?>

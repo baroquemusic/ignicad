@@ -80,20 +80,20 @@ class KalyhaC3D {
 	} else {
 	    $this->ip = $_SERVER['REMOTE_ADDR'];
 	}
-	
-	$this->agent = mysql_real_escape_string($_SERVER['HTTP_USER_AGENT']);
-	
-	$this->connection = mysql_connect($this->hostname, $this->username, $this->password);
+
+	$this->connection = mysqli_connect($this->hostname, $this->username, $this->password);
+
+	$this->agent = mysqli_real_escape_string($this->connection,$_SERVER['HTTP_USER_AGENT']);
 
 	if (!$this->connection) {
 	    $this->HandleDBError("Database Login failed! Please make sure that the DB login credentials provided are correct");
 	    return false;
 	}
-	if (!mysql_select_db($this->database, $this->connection)) {
+	if (!mysqli_select_db($this->connection,$this->database)) {
 	    $this->HandleDBError('Failed to select database: ' . $this->database . ' Please make sure that the database name provided is correct');
 	    return false;
 	}
-	if (!mysql_query("SET NAMES 'UTF8'", $this->connection)) {
+	if (!mysqli_query($this->connection,"SET NAMES 'UTF8'")) {
 	    $this->HandleDBError('Error setting utf8 encoding');
 	    return false;
 	}
@@ -173,7 +173,7 @@ class KalyhaC3D {
 	    "' . $this->ip . '",
 	    "' . $this->agent . '"
 	    )';
-	    if (!mysql_query($insert_query, $this->connection)) {
+	    if (!mysqli_query($this->connection,$insert_query)) {
 		$this->HandleDBError("Error inserting data to the table\nquery:$insert_query");
 		return false;
 	    }
@@ -211,7 +211,7 @@ class KalyhaC3D {
 	WHERE
 	id_project = "' . $this->project_id_num . '"';
 
-	if (!mysql_query($update_query, $this->connection)) {
+	if (!mysqli_query($this->connection,$update_query)) {
 	    $this->HandleDBError("Error updating data to the table\nquery:$update_query");
 	    return false;
 	}
@@ -249,7 +249,7 @@ class KalyhaC3D {
 	    WHERE
 	    id_project = "' . $this->project_id_num . '"';
 	    
-	    if (!mysql_query($update_query, $this->connection)) {
+	    if (!mysqli_query($this->connection,$update_query)) {
 		$this->HandleDBError("Error updating data to the table\nquery:$update_query");
 		return false;
 	    }
@@ -258,11 +258,11 @@ class KalyhaC3D {
     }
     
     function vaneLezaratlanProjektje() {
-	$result = mysql_query("SELECT id_project FROM $this->projektek WHERE id_user = '$this->session_user_id' AND issue_datetime = '0000-00-00 00:00:00'", $this->connection);
-	if (!$result || mysql_num_rows($result) <= 0) {
+	$result = mysqli_query($this->connection,"SELECT id_project FROM $this->projektek WHERE id_user = '$this->session_user_id' AND issue_datetime = '0000-00-00 00:00:00'");
+	if (!$result || mysqli_num_rows($result) <= 0) {
 	    return false;
 	}
-	$row = mysql_fetch_assoc($result);
+	$row = mysqli_fetch_assoc($result);
 	$this->project_id_num = $row['id_project'];
 	return true;
     }
@@ -274,12 +274,12 @@ class KalyhaC3D {
 	}
 	$query="SELECT id_project, project_name, cel, issue_datetime, cus_fullname, ent_name, ent_addr_str, ent_addr_town, ent_addr_zip, ent_addr_country, ent_taxnum FROM $this->projektek WHERE id_user = '$this->session_user_id' AND issue_datetime != '0000-00-00 00:00:00'";
 	//echo $query;
-	$result = mysql_query($query, $this->connection);
-	if (!$result || mysql_num_rows($result) <= 0) {
+	$result = mysqli_query($this->connection,$query);
+	if (!$result || mysqli_num_rows($result) <= 0) {
 	    return false;
 	}
 	$this->valasz = $result;
-	$this->lezart = mysql_num_rows($result);
+	$this->lezart = mysqli_num_rows($result);
 	return true;
     }
 
@@ -294,8 +294,8 @@ class KalyhaC3D {
 	if (!$this->vaneLezaratlanProjektje()) {
 	    return false;
 	}
-	$result = mysql_query("SELECT * FROM $this->projektek WHERE id_user = '$this->session_user_id' AND issue_datetime = '0000-00-00 00:00:00'", $this->connection);
-	$this->valasz = mysql_fetch_assoc($result);
+	$result = mysqli_query($this->connection,"SELECT * FROM $this->projektek WHERE id_user = '$this->session_user_id' AND issue_datetime = '0000-00-00 00:00:00'");
+	$this->valasz = mysqli_fetch_assoc($result);
 	return true;
     }
     
@@ -304,9 +304,9 @@ class KalyhaC3D {
 	    $this->HandleError("Database login failed!");
 	    return false;
 	}
-	$result = mysql_query("SELECT * FROM $this->projektek WHERE id_project = '$ezazidkell'", $this->connection);
+	$result = mysqli_query($this->connection,"SELECT * FROM $this->projektek WHERE id_project = '$ezazidkell'");
 	
-	$this->valasz = mysql_fetch_assoc($result);
+	$this->valasz = mysqli_fetch_assoc($result);
 	return true;
     }
 
@@ -316,17 +316,17 @@ class KalyhaC3D {
 	    return false;
 	}
 	
-	$result = mysql_query("SELECT * FROM $this->fustjaratok WHERE id_project = '$ezazidkell'", $this->connection);
+	$result = mysqli_query($this->connection,"SELECT * FROM $this->fustjaratok WHERE id_project = '$ezazidkell'");
 	
 	$arraylist = array();
 	
-	while ($row = mysql_fetch_assoc($result)) {
+	while ($row = mysqli_fetch_assoc($result)) {
 	    $arraylist[] = $row;
 	}
 	
 	$this->valasz = $arraylist;
 	
-	if (!$result || mysql_num_rows($result) <= 0) {
+	if (!$result || mysqli_num_rows($result) <= 0) {
 	    return false;
 	} else {
 	   return true;
@@ -335,8 +335,8 @@ class KalyhaC3D {
     
     
     function vaneProjektekTabla() {
-	$result = mysql_query("SHOW COLUMNS FROM $this->projektek");
-	if (!$result || mysql_num_rows($result) <= 0) {
+	$result = mysqli_query($this->connection,"SHOW COLUMNS FROM $this->projektek");
+	if (!$result || mysqli_num_rows($result) <= 0) {
 	    return $this->csinaljProjektekTablat();
 	}
 	return true;
@@ -396,7 +396,7 @@ rendszer VARCHAR ( 512 ) DEFAULT '',
 
 PRIMARY KEY ( id_project ) )";
 
-	if (!mysql_query($qry, $this->connection)) {
+	if (!mysqli_query($this->connection,$qry)) {
 	    $this->HandleDBError("Error creating the table \nquery was\n $qry");
 	    return false;
 	}
@@ -416,7 +416,7 @@ PRIMARY KEY ( id_project ) )";
 	    return false;
 	}
 	
-	mysql_query("DELETE FROM $this->fustjaratok WHERE id_project = '$this->project_id_num'", $this->connection);
+	mysqli_query($this->connection,"DELETE FROM $this->fustjaratok WHERE id_project = '$this->project_id_num'");
 
 	$jaratokszama = count($this->fustjaratokadat->ag);
 	
@@ -434,7 +434,7 @@ PRIMARY KEY ( id_project ) )";
 	
 	    $insert_query = "INSERT INTO $this->fustjaratok (id_project, ag, fugg, viz, csox, csoy, csoz, csoanyag, phi, h) VALUES ($this->project_id_num, $ag, $fugg, $viz, $csox, $csoy, $csoz, $csoanyag, $phi, $h)";
 	    
-	    if (!mysql_query($insert_query, $this->connection)) {
+	    if (!mysqli_query($this->connection,$insert_query)) {
 		$this->HandleDBError("Error inserting data to the table\nquery:$insert_query");
 		return false;
 	    }
@@ -458,17 +458,17 @@ PRIMARY KEY ( id_project ) )";
 	    return false;
 	}
 	
-	$result = mysql_query("SELECT * FROM $this->fustjaratok WHERE id_project = '$this->project_id_num'", $this->connection);
+	$result = mysqli_query($this->connection,"SELECT * FROM $this->fustjaratok WHERE id_project = '$this->project_id_num'");
 	
 	$arraylist = array();
 	
-	while ($row = mysql_fetch_assoc($result)) {
+	while ($row = mysqli_fetch_assoc($result)) {
 	    $arraylist[] = $row;
 	}
 	
 	$this->valasz = $arraylist;
 	
-	if (!$result || mysql_num_rows($result) <= 0) {
+	if (!$result || mysqli_num_rows($result) <= 0) {
 	    return false;
 	} else {
 	   return true;
@@ -476,8 +476,8 @@ PRIMARY KEY ( id_project ) )";
     }
     
     function vaneFustjaratokTabla() {
-	$result = mysql_query("SHOW COLUMNS FROM $this->fustjaratok");
-	if (!$result || mysql_num_rows($result) <= 0) {
+	$result = mysqli_query($this->connection,"SHOW COLUMNS FROM $this->fustjaratok");
+	if (!$result || mysqli_num_rows($result) <= 0) {
 	    return $this->csinaljFustjaratokTablat();
 	}
 	return true;
@@ -500,7 +500,7 @@ h FLOAT ( 8, 5 ) NOT NULL,
 
 PRIMARY KEY ( id_pipe ) )";
 
-	if (!mysql_query($qry, $this->connection)) {
+	if (!mysqli_query($this->connection,$qry)) {
 	    $this->HandleDBError("Error creating the table \nquery was\n $qry");
 	    return false;
 	}
@@ -514,8 +514,8 @@ PRIMARY KEY ( id_pipe ) )";
 	    $this->HandleError("Database login failed!");
 	    return false;
 	}
-	$qry = mysql_query("SELECT ora, fa, kw, tuzfel, egyeniy, tuzalap, egyenix, egyeniz, elevacio, levegohom, kalyhahej, resmin, resmax, ag, kilepomagas, csox, csoy, csoz, csoanyag FROM $this->projektek WHERE id_project = '$this->project_id_num'", $this->connection);
-	$projektadat = mysql_fetch_assoc($qry);
+	$qry = mysqli_query($this->connection,"SELECT ora, fa, kw, tuzfel, egyeniy, tuzalap, egyenix, egyeniz, elevacio, levegohom, kalyhahej, resmin, resmax, ag, kilepomagas, csox, csoy, csoz, csoanyag FROM $this->projektek WHERE id_project = '$this->project_id_num'");
+	$projektadat = mysqli_fetch_assoc($qry);
 	
 	array_unshift($this->fustjaratokadat->ag, $projektadat[ag]);
 	array_unshift($this->fustjaratokadat->fugg, 0);
@@ -1079,7 +1079,7 @@ PRIMARY KEY ( id_pipe ) )";
     }
 
     function HandleDBError($err) {
-	$this->HandleError($err . "\r\n MySQL error:" . mysql_error());
+	$this->HandleError($err . "\r\n MySQL error:" . mysqli_error($this->connection));
     }
 
     function GetSelfScript() {
@@ -1087,7 +1087,7 @@ PRIMARY KEY ( id_pipe ) )";
     }
     function SanitizeForSQL($str) {
 	    if (function_exists("mysql_real_escape_string")) {
-		    $ret_str = mysql_real_escape_string($str);
+		    $ret_str = mysqli_real_escape_string($this->connection,$str);
 	    } else {
 		    $ret_str = addslashes($str);
 	    }
