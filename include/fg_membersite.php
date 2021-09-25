@@ -785,7 +785,7 @@ class FGMembersite {
     }
 
     function SanitizeForSQL($str) {
-	if (function_exists("mysql_real_escape_string")) {
+	if (function_exists("mysqli_real_escape_string")) {
 	    $ret_str = mysqli_real_escape_string($this->connection,$str);
 	} else {
 	    $ret_str = addslashes($str);

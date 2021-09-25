@@ -63,7 +63,7 @@ class KalyhaC3DAdmin {
 	$fields = mysqli_num_fields( $export );
 	for ( $i = 0; $i < $fields; $i++ )
 	{
-	    $this->header .= mysql_field_name( $export , $i ) . "\t";
+	    $this->header .= mysqli_fetch_field_direct( $export , $i )->name . "\t";
 	}
 	while( $row = mysqli_fetch_row( $export ) )
 	{
@@ -100,7 +100,7 @@ class KalyhaC3DAdmin {
 	$fields = mysqli_num_fields( $export );
 	for ( $i = 0; $i < $fields; $i++ )
 	{
-	    $this->header .= mysql_field_name( $export , $i ) . "\t";
+	    $this->header .= mysqli_fetch_field_direct( $export , $i )->name . "\t";
 	}
 	while( $row = mysqli_fetch_row( $export ) )
 	{
@@ -137,7 +137,7 @@ class KalyhaC3DAdmin {
 	$fields = mysqli_num_fields( $export );
 	for ( $i = 0; $i < $fields; $i++ )
 	{
-	    $this->header .= mysql_field_name( $export , $i ) . "\t";
+	    $this->header .= mysqli_fetch_field_direct( $export , $i )->name . "\t";
 	}
 	while( $row = mysqli_fetch_row( $export ) )
 	{
@@ -174,7 +174,7 @@ class KalyhaC3DAdmin {
 	$fields = mysqli_num_fields( $export );
 	for ( $i = 0; $i < $fields; $i++ )
 	{
-	    $this->header .= mysql_field_name( $export , $i ) . "\t";
+	    $this->header .= mysqli_fetch_field_direct( $export , $i )->name . "\t";
 	}
 	while( $row = mysqli_fetch_row( $export ) )
 	{
@@ -470,7 +470,7 @@ PRIMARY KEY ( id_coupon ) )";
     }
 
     function SanitizeForSQL($str) {
-	if (function_exists("mysql_real_escape_string")) {
+	if (function_exists("mysqli_real_escape_string")) {
 	    $ret_str = mysqli_real_escape_string($this->connection,$str);
 	} else {
 	    $ret_str = addslashes($str);
