@@ -63,22 +63,22 @@ class KalyhaC3D {
     var $projekt;
     
     function initDB($host, $user, $pass, $db, $users, $projects, $fluepipes) {
-	$this->hostname = $host;
-	$this->username = $user;
-	$this->password = $pass;
-	$this->database = $db;
-	$this->felhasznalok = $users;
-	$this->projektek = $projects;
-	$this->fustjaratok = $fluepipes;
+		$this->hostname = $host;
+		$this->username = $user;
+		$this->password = $pass;
+		$this->database = $db;
+		$this->felhasznalok = $users;
+		$this->projektek = $projects;
+		$this->fustjaratok = $fluepipes;
     }
 
     function loginDB() {
-	if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-	    $this->ip = $_SERVER['HTTP_CLIENT_IP'];
-	} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-	    $this->ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-	} else {
-	    $this->ip = $_SERVER['REMOTE_ADDR'];
+		if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+			$this->ip = $_SERVER['HTTP_CLIENT_IP'];
+		} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+			$this->ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+		} else {
+			$this->ip = $_SERVER['REMOTE_ADDR'];
 	}
 
 	$this->connection = mysqli_connect($this->hostname, $this->username, $this->password);
@@ -273,7 +273,7 @@ class KalyhaC3D {
 	    return false;
 	}
 	$query="SELECT id_project, project_name, cel, issue_datetime, cus_fullname, ent_name, ent_addr_str, ent_addr_town, ent_addr_zip, ent_addr_country, ent_taxnum FROM $this->projektek WHERE id_user = '$this->session_user_id' AND issue_datetime != '0000-00-00 00:00:00'";
-	//echo $query;
+
 	$result = mysqli_query($this->connection,$query);
 	if (!$result || mysqli_num_rows($result) <= 0) {
 	    return false;
@@ -557,7 +557,7 @@ PRIMARY KEY ( id_pipe ) )";
 		    $szam[$i][9] = min(($szam[$i][3] + $szam[$i][4]) * 2, ($szam[$i - 1][3] + $szam[$i - 1][4]) * 2); // kerulet pont
 		    $szam[$i][10] = ($szam[$i][3] + $szam[$i][4]) * 2; // kerulet szakasz
 	    }
-	    $szam[$i][11] = $L - $szam[$i][5]; // a pot tuztertol valo tavolsaga
+	    $szam[$i][11] = $L - $szam[$i][5]; // a pont tuztertol valo tavolsaga
 //	    $szumszam[tavp][$i] = round($szam[$i][11], $this->tizedes);
 	    $szam[$i][12] = $szam[$i][11] + ($szam[$i][5] / 2); // szakasz tuztertol valo tavolsaga
 //	    $szumszam[tavs][$i] = round($szam[$i][12], $this->tizedes);

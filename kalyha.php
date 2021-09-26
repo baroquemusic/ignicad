@@ -83,6 +83,7 @@ if (isset($_GET['ora'])) {
 } elseif (isset($_POST['csakszamit'])) {
     $kalyha->fustjaratokadat = json_decode(stripslashes($_POST['csakszamit']));
     $kalyha->project_id_num = $_POST['ehhez'];
+
     if ($kalyha->szumma()) {
 	echo json_encode($kalyha->szamitas);
 	$_SESSION['szum'] = $kalyha->szamitas;
@@ -114,7 +115,6 @@ if (isset($_GET['ora'])) {
 	echo "Project is not closed :( ";
 	echo $kalyha->error_message;
     }
-    
 }
 
 ?>
