@@ -37,7 +37,7 @@ $_SESSION['balance'] = $vanneki - $elhasznalta;
     <head>
 	<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
 	<title><?php echo $lang['PAGE_TITLE']; ?></title>
-	<script src="./scripts/jquery-3.6.0.min.js"></script>
+	<script src="./scripts/jquery-1.9.1.min.js"></script>
 	<script src="./scripts/three.min.js"></script>
 	<script src="./scripts/TrackballControls.js"></script>
 	<script src="./scripts/ignea.js"></script>
@@ -76,12 +76,12 @@ $_SESSION['balance'] = $vanneki - $elhasznalta;
     }
     $uccsosor = end($sorok);
     echo '<span class="cimsor">' . $lang['YOUR_ENTERPRISE'] . '</span><br>'
-	. $lang['ENTERPRISE_NAME'] . '<input id="ent_name" type="text" value="' . $uccsosor[ent_name] . '" maxlength="128"'; if (!$_SESSION['balance'] || $_SESSION['balance'] == 0) { echo 'disabled'; }; echo '><br>'
-	. $lang['ADDRESS_STREET'] . '<input id="ent_addr_str" type="text" value="' . $uccsosor[ent_addr_str] . '" maxlength="128"'; if (!$_SESSION['balance'] || $_SESSION['balance'] == 0) { echo 'disabled'; }; echo '><br>'
-	. $lang['ADDRESS_TOWN'] . '<input id="ent_addr_town" type="text" value="' . $uccsosor[ent_addr_town] . '" maxlength="64"'; if (!$_SESSION['balance'] || $_SESSION['balance'] == 0) { echo 'disabled'; }; echo '><br>'
-	. $lang['ADDRESS_ZIP'] . '<input id="ent_addr_zip" type="text" value="' . $uccsosor[ent_addr_zip] . '" maxlength="16"'; if (!$_SESSION['balance'] || $_SESSION['balance'] == 0) { echo 'disabled'; }; echo '><br>'
+	. $lang['ENTERPRISE_NAME'] . '<input id="ent_name" type="text" value="' . $uccsosor['ent_name'] . '" maxlength="128"'; if (!$_SESSION['balance'] || $_SESSION['balance'] == 0) { echo 'disabled'; }; echo '><br>'
+	. $lang['ADDRESS_STREET'] . '<input id="ent_addr_str" type="text" value="' . $uccsosor['ent_addr_str'] . '" maxlength="128"'; if (!$_SESSION['balance'] || $_SESSION['balance'] == 0) { echo 'disabled'; }; echo '><br>'
+	. $lang['ADDRESS_TOWN'] . '<input id="ent_addr_town" type="text" value="' . $uccsosor['ent_addr_town'] . '" maxlength="64"'; if (!$_SESSION['balance'] || $_SESSION['balance'] == 0) { echo 'disabled'; }; echo '><br>'
+	. $lang['ADDRESS_ZIP'] . '<input id="ent_addr_zip" type="text" value="' . $uccsosor['ent_addr_zip'] . '" maxlength="16"'; if (!$_SESSION['balance'] || $_SESSION['balance'] == 0) { echo 'disabled'; }; echo '><br>'
 	. $lang['ADDRESS_COUNTRY'] . '<input id="ent_addr_country" type="text" value="' . $lang['COUNTRY'] . '" maxlength="64"'; if (!$_SESSION['balance'] || $_SESSION['balance'] == 0) { echo 'disabled'; }; echo '><br>'
-	. $lang['ENTERPRISE_TAX_NUMBER'] . '<input id="ent_taxnum" type="text" value="' . $uccsosor[ent_taxnum] . '" maxlength="16"'; if (!$_SESSION['balance'] || $_SESSION['balance'] == 0) { echo 'disabled'; }; echo '><br>';
+	. $lang['ENTERPRISE_TAX_NUMBER'] . '<input id="ent_taxnum" type="text" value="' . $uccsosor['ent_taxnum'] . '" maxlength="16"'; if (!$_SESSION['balance'] || $_SESSION['balance'] == 0) { echo 'disabled'; }; echo '><br>';
     }
     ?>
 	    </div>
@@ -193,7 +193,7 @@ $_SESSION['balance'] = $vanneki - $elhasznalta;
 	echo '<div class="adattarolo" title="' . $lang['TITLE_SAVED_PROJECTS'] . '"><span class="cimsor">' . $lang['SAVED_PROJECTS'] . '</span><br>
 		<select title="' . $lang['TITLE_SAVED_PROJECTS_LIST'] . '" id="projektjeim" name="projektjeim" size="' . (mysqli_num_rows($kalyha->valasz) + 1) . '" onchange="if(this.value) { vanemarkalyhaja(this.value); }" >';
 	foreach ($sorok as $ertek) {
-	    echo '<option value="' . $ertek[id_project] . '">' . substr($ertek[issue_datetime], 0, 10) . '   ' . $ertek[project_name] . ' / ' . $ertek[cus_fullname] . '</option>';
+	    echo '<option value="' . $ertek['id_project'] . '">' . substr($ertek['issue_datetime'], 0, 10) . '   ' . $ertek['project_name'] . ' / ' . $ertek['cus_fullname'] . '</option>';
 	}
 	echo '</select>';
 	echo '</div><div class="adattarolo"><button title="' . $lang['TITLE_CLONE_PROJECT'] . '" id="projektklonozas" onclick="projektklonozas=true;kilepooldal()" disabled >' . $lang['CLONE_PROJECT'] . '</button> 

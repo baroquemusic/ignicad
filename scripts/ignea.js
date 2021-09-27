@@ -71,7 +71,7 @@ function projektlezaras() {
 
 				document.location.reload(true);
 			}
-		};
+		}
 		var ezttaroldel = "./kalyha.php?project_name=" + project_name +
 			"&cel=" + cel +
 			"&ent_name=" + ent_name +
@@ -94,7 +94,7 @@ function projektlezaras() {
 		while (adatstatusprojekt.hasChildNodes()) { adatstatusprojekt.removeChild(adatstatusprojekt.lastChild); }
 		szurke = document.createElement("div");
 		szurke.className = "szurke";
-		adattarolasprojektzaras = document.createTextNode("Closing project..");
+		adattarolasprojektzaras = document.createTextNode("Closing project...");
 		document.getElementById("adatstatusprojekt").appendChild(szurke);
 		szurke.appendChild(adattarolasprojektzaras);
 
@@ -180,7 +180,7 @@ function overkiir(melyiket) {
 		while (jobbjobb.hasChildNodes()) { jobbjobb.removeChild(jobbjobb.lastChild); }
 
 		var szumnev = document.createTextNode("Effective height ");
-		var szum = document.createTextNode(Math.round(h.melyiket * Math.pow(10, 4)) / Math.pow(10, 4));
+		var szum = document.createTextNode(Math.round(h[melyiket] * Math.pow(10, 4)) / Math.pow(10, 4));
 		var szumme = document.createTextNode(" m");
 		var brb = document.createElement("br");
 		var brj = document.createElement("br");
@@ -191,7 +191,7 @@ function overkiir(melyiket) {
 		baljobb.appendChild(brj);
 
 		var szumnev = document.createTextNode("Temp. at pipe start ");
-		var szum = document.createTextNode(szamitas + ".szumszam.tp" + [melyiket]);
+		var szum = document.createTextNode(szamitas['szumszam']['tp'][melyiket]);
 		var szumme = document.createTextNode(" °C");
 		var brb = document.createElement("br");
 		var brj = document.createElement("br");
@@ -202,7 +202,7 @@ function overkiir(melyiket) {
 		baljobb.appendChild(brj);
 
 		var szumnev = document.createTextNode("Temp. at mid pipe ");
-		var szum = document.createTextNode(szamitas + ".szumszam.ts" + [melyiket]);
+		var szum = document.createTextNode(szamitas['szumszam']['ts'][melyiket]);
 		var szumme = document.createTextNode(" °C");
 		var brb = document.createElement("br");
 		var brj = document.createElement("br");
@@ -213,7 +213,7 @@ function overkiir(melyiket) {
 		baljobb.appendChild(brj);
 
 		var szumnev = document.createTextNode("Dyn. pressure at pipe start ");
-		var szum = document.createTextNode(szamitas + ".szumszam.pdp" + [melyiket]);
+		var szum = document.createTextNode(szamitas['szumszam']['pdp'][melyiket]);
 		var szumme = document.createTextNode(" Pa");
 		var brb = document.createElement("br");
 		var brj = document.createElement("br");
@@ -224,7 +224,7 @@ function overkiir(melyiket) {
 		baljobb.appendChild(brj);
 
 		var szumnev = document.createTextNode("Dyn. pressure at mid pipe ");
-		var szum = document.createTextNode(szamitas + ".szumszam.pds" + [melyiket]);
+		var szum = document.createTextNode(szamitas['szumszam']['pds'][melyiket]);
 		var szumme = document.createTextNode(" Pa");
 		var brb = document.createElement("br");
 		var brj = document.createElement("br");
@@ -235,7 +235,7 @@ function overkiir(melyiket) {
 		baljobb.appendChild(brj);
 
 		var szumnev = document.createTextNode("Zeta ζ ");
-		var szum = document.createTextNode(szamitas + ".szumszam.zeta" + [melyiket]);
+		var szum = document.createTextNode(szamitas['szumszam']['zeta'][melyiket]);
 		var szumme = document.createTextNode("");
 		var brb = document.createElement("br");
 		var brj = document.createElement("br");
@@ -246,7 +246,7 @@ function overkiir(melyiket) {
 		baljobb.appendChild(brj);
 
 		var szumnev = document.createTextNode("Flue speed ");
-		var szum = document.createTextNode(szamitas + ".szumszam.vs" + [melyiket]);
+		var szum = document.createTextNode(szamitas['szumszam']['vs'][melyiket]);
 		var szumme = document.createTextNode(" m/s");
 		var brb = document.createElement("br");
 		var brj = document.createElement("br");
@@ -257,7 +257,7 @@ function overkiir(melyiket) {
 		jobbjobb.appendChild(brj);
 
 		var szumnev = document.createTextNode("Total static pressure ");
-		var szum = document.createTextNode(szamitas + ".szumszam.php" + [melyiket]);
+		var szum = document.createTextNode(szamitas['szumszam']['php'][melyiket]);
 		var szumme = document.createTextNode(" Pa");
 		var brb = document.createElement("br");
 		var brj = document.createElement("br");
@@ -268,7 +268,7 @@ function overkiir(melyiket) {
 		jobbjobb.appendChild(brj);
 
 		var szumnev = document.createTextNode("Total frictional res. ");
-		var szum = document.createTextNode(szamitas + ".szumszam.pss" + [melyiket]);
+		var szum = document.createTextNode(szamitas['szumszam']['pss'][melyiket]);
 		var szumme = document.createTextNode(" Pa");
 		var brb = document.createElement("br");
 		var brj = document.createElement("br");
@@ -279,7 +279,7 @@ function overkiir(melyiket) {
 		jobbjobb.appendChild(brj);
 
 		var szumnev = document.createTextNode("Total formal res. ");
-		var szum = document.createTextNode(szamitas + ".szumszam.pap" + [melyiket]);
+		var szum = document.createTextNode(szamitas['szumszam']['pap'][melyiket]);
 		var szumme = document.createTextNode(" Pa");
 		var brb = document.createElement("br");
 		var brj = document.createElement("br");
@@ -290,7 +290,7 @@ function overkiir(melyiket) {
 		jobbjobb.appendChild(brj);
 
 		var szumnev = document.createTextNode("TOTAL DRAG ");
-		var szum = document.createTextNode(Math.round((szamitas + ".szumszam.pap.melyiket" + szamitas + ".szumszam.pss.melyiket" + szamitas + ".szumszam.php.melyiket") * Math.pow(10, 4)) / Math.pow(10, 4));
+		var szum = document.createTextNode(Math.round((szamitas['szumszam']['pap'][melyiket] + szamitas['szumszam']['pss'][melyiket] + szamitas['szumszam']['php'][melyiket]) * Math.pow(10, 4)) / Math.pow(10, 4));
 		var szumme = document.createTextNode(" Pa");
 		var brb = document.createElement("br");
 		var brj = document.createElement("br");
@@ -326,7 +326,7 @@ function szumma() {
 		while (jobbjobb.hasChildNodes()) { jobbjobb.removeChild(jobbjobb.lastChild); }
 
 		var szumnev = document.createTextNode("Min total pipe length ");
-		var szum = document.createTextNode(szamitas + ".szumma.fustjarathossz");
+		var szum = document.createTextNode(szamitas['szumma']['fustjarathossz']);
 		var szumme = document.createTextNode(" m");
 		var brb = document.createElement("br");
 		var brj = document.createElement("br");
@@ -337,7 +337,7 @@ function szumma() {
 		baljobb.appendChild(brj);
 
 		var szumnev = document.createTextNode("Current pipe length ");
-		var szum = document.createTextNode(szamitas + ".szumma.jarathossz");
+		var szum = document.createTextNode(szamitas['szumma']['jarathossz']);
 		var szumme = document.createTextNode(" m");
 		var brb = document.createElement("br");
 		var brj = document.createElement("br");
@@ -348,7 +348,7 @@ function szumma() {
 		baljobb.appendChild(brj);
 
 		var szumnev = document.createTextNode("Exit temperature ");
-		var szum = document.createTextNode(szamitas + ".szumma.hom");
+		var szum = document.createTextNode(szamitas['szumma']['hom']);
 		var szumme = document.createTextNode(" °C");
 		var brb = document.createElement("br");
 		var brj = document.createElement("br");
@@ -359,7 +359,7 @@ function szumma() {
 		baljobb.appendChild(brj);
 
 		var szumnev = document.createTextNode("Total static pressure ");
-		var szum = document.createTextNode(szamitas + ".szumma.ph");
+		var szum = document.createTextNode(szamitas['szumma']['ph']);
 		var szumme = document.createTextNode(" Pa");
 		var brb = document.createElement("br");
 		var brj = document.createElement("br");
@@ -370,7 +370,7 @@ function szumma() {
 		baljobb.appendChild(brj);
 
 		var szumnev = document.createTextNode("Total frictional res. ");
-		var szum = document.createTextNode(szamitas + ".szumma.ps");
+		var szum = document.createTextNode(szamitas['szumma']['ps']);
 		var szumme = document.createTextNode(" Pa");
 		var brb = document.createElement("br");
 		var brj = document.createElement("br");
@@ -381,7 +381,7 @@ function szumma() {
 		baljobb.appendChild(brj);
 
 		var szumnev = document.createTextNode("Total formal res. ");
-		var szum = document.createTextNode(szamitas + ".szumma.pa");
+		var szum = document.createTextNode(szamitas['szumma']['pa']);
 		var szumme = document.createTextNode(" Pa");
 		var brb = document.createElement("br");
 		var brj = document.createElement("br");
@@ -392,7 +392,7 @@ function szumma() {
 		baljobb.appendChild(brj);
 
 		var szumnev = document.createTextNode("TOTAL DRAG ");
-		var szum = document.createTextNode(szamitas + ".szumma.ell");
+		var szum = document.createTextNode(szamitas['szumma']['ell']);
 		var szumme = document.createTextNode(" Pa");
 		var brb = document.createElement("br");
 		var brj = document.createElement("br");
@@ -403,7 +403,7 @@ function szumma() {
 		baljobb.appendChild(brj);
 
 		var szumnev = document.createTextNode("Stove efficiency ");
-		var szum = document.createTextNode(szamitas + ".szumma.hatasfok");
+		var szum = document.createTextNode(szamitas['szumma']['hatasfok']);
 		var szumme = document.createTextNode(" %");
 		var brb = document.createElement("br");
 		var brj = document.createElement("br");
@@ -414,7 +414,7 @@ function szumma() {
 		jobbjobb.appendChild(brj);
 
 		var szumnev = document.createTextNode("Air demand ");
-		var szum = document.createTextNode(szamitas + ".szumma.levego");
+		var szum = document.createTextNode(szamitas['szumma']['levego']);
 		var szumme = document.createTextNode(" m3/s");
 		var brb = document.createElement("br");
 		var brj = document.createElement("br");
@@ -447,7 +447,7 @@ function szumma() {
 		jobbjobb.appendChild(brj);
 
 		var szumnev = document.createTextNode("Optimal load ");
-		var szum = document.createTextNode(Math.round(document.getElementById("fa").value * 0.78 * Math.pow(10, 4)) / Math.pow(10, 4));
+		var szum = document.createTextNode(Math.round(document.getElementById("fa").value * .78 * Math.pow(10, 4)) / Math.pow(10, 4));
 		var szumme = document.createTextNode(" kg");
 		var brb = document.createElement("br");
 		var brj = document.createElement("br");
@@ -458,7 +458,7 @@ function szumma() {
 		jobbjobb.appendChild(brj);
 
 		var szumnev = document.createTextNode("Min load ");
-		var szum = document.createTextNode(Math.round(document.getElementById("fa").value * 0.5 * Math.pow(10, 4)) / Math.pow(10, 4));
+		var szum = document.createTextNode(Math.round(document.getElementById("fa").value * .5 * Math.pow(10, 4)) / Math.pow(10, 4));
 		var szumme = document.createTextNode(" kg");
 		var brb = document.createElement("br");
 		var brj = document.createElement("br");
@@ -469,7 +469,7 @@ function szumma() {
 		jobbjobb.appendChild(brj);
 
 		var szumnev = document.createTextNode("Burning rate ");
-		var szum = document.createTextNode(Math.round(document.getElementById("fa").value * 0.78 * Math.pow(10, 4)) / Math.pow(10, 4));
+		var szum = document.createTextNode(Math.round(document.getElementById("fa").value * .78 * Math.pow(10, 4)) / Math.pow(10, 4));
 		var szumme = document.createTextNode(" kg/h");
 		var brb = document.createElement("br");
 		var brj = document.createElement("br");
@@ -491,8 +491,8 @@ function warning() {
 		while (warning.hasChildNodes()) { warning.removeChild(warning.lastChild); }
 	}
 
-	if (szamitas + ".szumma.jarathossz" < szamitas + ".szumma.fustjarathossz") {
-		jaratrovid = document.createTextNode("Length of flue pipe system is " + szamitas.szumma.jarathossz + " m, shorter than expected: " + szamitas.szumma.fustjarathossz + " m!");
+	if (szamitas['szumma']['jarathossz'] < szamitas['szumma']['fustjarathossz']) {
+		jaratrovid = document.createTextNode("Length of flue pipe system is " + szamitas['szumma']['jarathossz'] + " m, shorter than expected: " + szamitas['szumma']['fustjarathossz'] + " m!");
 		piros = document.createElement("div");
 		piros.className = "piros";
 		document.getElementById("warning").appendChild(piros);
@@ -527,13 +527,13 @@ function warning() {
 	var vspiroshi = [];
 	var vssarga = [];
 
-	for (i = 0; i < szamitas + ".szumszam.vs.length"; i++) {
+	for (i = 0; i < szamitas['szumszam']['vs'].length; i++) {
 		if (szamitas['szumszam']['vs'][i] < 1.2) {
-			vspiroslo.push(i + 1);
+			vspiroslo.push([i + 1]);
 		} else if (szamitas['szumszam']['vs'][i] > 6) {
-			vspiroshi.push(i + 1);
+			vspiroshi.push([i + 1]);
 		} else if (szamitas['szumszam']['vs'][i] > 3.5) {
-			vssarga.push(i + 1);
+			vssarga.push([i + 1]);
 		}
 	}
 
@@ -561,15 +561,15 @@ function warning() {
 		sarga.appendChild(vssargatxt);
 	}
 
-	if (szamitas + ".szumma.hatasfok" < 78) {
-		nemhatekony = document.createTextNode("Efficiency is " + szamitas.szumma.hatasfok + " %, the expected minimum is 78 %!");
+	if (szamitas['szumma']['hatasfok'] < 78) {
+		nemhatekony = document.createTextNode("Efficiency is " + szamitas['szumma']['hatasfok'] + " %, the expected minimum is 78 %!");
 		sarga = document.createElement("div");
 		sarga.className = "sarga";
 		document.getElementById("warning").appendChild(sarga);
 		sarga.appendChild(nemhatekony);
 	}
 
-	if (szamitas + ".szumma.ell" < document.getElementById("resmin").value) {
+	if (szamitas['szumma']['ell'] < document.getElementById("resmin").value) {
 		resmin = document.createTextNode("Total drag is less than the expected minimum!");
 		sarga = document.createElement("div");
 		sarga.className = "sarga";
@@ -577,7 +577,7 @@ function warning() {
 		sarga.appendChild(resmin);
 	}
 
-	if (szamitas + ".szumma.ell" > document.getElementById("resmax").value) {
+	if (szamitas['szumma']['ell'] > document.getElementById("resmax").value) {
 		resmin = document.createTextNode("Total drag is more than the expected maximum!");
 		sarga = document.createElement("div");
 		sarga.className = "sarga";
@@ -915,7 +915,7 @@ function vanemarkalyhaja(ezt) {
 			if (ezjottvissza == "nincs") {
 				init();
 			} else {
-				var adat = JSON.stringify(ezjottvissza);
+				var adat = JSON.parse(ezjottvissza);
 				document.getElementById("ora").value = Number(adat.ora);
 				document.getElementById("fa").value = Number(adat.fa);
 				document.getElementById("kw").value = Number(adat.kw);
@@ -1015,8 +1015,7 @@ function vanemarkalyhaja(ezt) {
 				kilepooldal();
 			}
 		}
-	};
-
+	}
 	if (!ezt) {
 		ezt = 0;
 	} else {
@@ -1026,7 +1025,7 @@ function vanemarkalyhaja(ezt) {
 		while (adatstatusprojekt.hasChildNodes()) { adatstatusprojekt.removeChild(adatstatusprojekt.lastChild); }
 		szurke = document.createElement("div");
 		szurke.className = "szurke";
-		adattarolasprojekt = document.createTextNode("Loading combustion chamber..");
+		adattarolasprojekt = document.createTextNode("Loading combustion chamber...");
 		document.getElementById("adatstatusprojekt").appendChild(szurke);
 		szurke.appendChild(adattarolasprojekt);
 	}
@@ -1045,12 +1044,12 @@ function vanemarfustjarata() {
 				while (adatstatusfust.hasChildNodes()) { adatstatusfust.removeChild(adatstatusfust.lastChild); }
 				szurke = document.createElement("div");
 				szurke.className = "szurke";
-				nincsmegfustje = document.createTextNode("No flue pipes yet..");
+				nincsmegfustje = document.createTextNode("No flue pipes yet...");
 				document.getElementById("adatstatusfust").appendChild(szurke);
 				szurke.appendChild(nincsmegfustje);
 
 			} else {
-				var adat = JSON.stringify(ezjottvisszafust);
+				var adat = JSON.parse(ezjottvisszafust);
 
 				var i = 0;
 				var egyenkentkell = function (ezazarray) {
@@ -1060,7 +1059,7 @@ function vanemarfustjarata() {
 							egyenkentkell(ezazarray);
 						}
 					});
-				};
+				}
 				egyenkentkell(adat);
 				document.getElementById("projektzaras").disabled = false;
 			}
@@ -1131,7 +1130,7 @@ function vanemarfustjarata() {
 				kilepooldal();
 			}
 		}
-	};
+	}
 	if (!projektbetoltes) {
 		ehhezaproekthezkell = 0;
 	} else {
@@ -1141,7 +1140,7 @@ function vanemarfustjarata() {
 		while (adatstatusfust.hasChildNodes()) { adatstatusfust.removeChild(adatstatusfust.lastChild); }
 		szurke = document.createElement("div");
 		szurke.className = "szurke";
-		fustjaratbetolt = document.createTextNode("Loading flue pipes..");
+		fustjaratbetolt = document.createTextNode("Loading flue pipes...");
 		document.getElementById("adatstatusfust").appendChild(szurke);
 		szurke.appendChild(fustjaratbetolt);
 	}
@@ -1154,7 +1153,7 @@ function csakszamit() {
 	xmlhttp_csakszamit.onreadystatechange = function () {
 		if (xmlhttp_csakszamit.readyState == 4 && xmlhttp_csakszamit.status == 200) {
 			ezjottvissza = xmlhttp_csakszamit.responseText;
-			szamitas = JSON.stringify(ezjottvissza);
+			szamitas = JSON.parse(ezjottvissza);
 			diplayfustjaratok = document.createTextNode("Calculations are loaded!");
 			while (adatstatusfust.hasChildNodes()) { adatstatusfust.removeChild(adatstatusfust.lastChild); }
 			zold = document.createElement("div");
@@ -1165,7 +1164,7 @@ function csakszamit() {
 			szumma();
 			/////////
 		}
-	};
+	}
 
 	var fj = new Object();
 	fj.ag = [];
@@ -1180,15 +1179,15 @@ function csakszamit() {
 
 	for (i = 1; i < csomesh.length; i++) {
 		im1 = i - 1;
-		if (document.getElementById("elag" + i).checked) { fj.ag.im1 = 1; } else { fj.ag.im1 = 0; }
-		fj.fugg.im1 = Number(document.getElementById("fuggnum" + i).value);
-		fj.viz.im1 = Number(document.getElementById("viznum" + i).value);
-		fj.csox.im1 = Number(document.getElementById("csox" + i).value);
-		fj.csoy.im1 = Number(document.getElementById("csoy" + i).value);
-		fj.csoz.im1 = Number(document.getElementById("csoz" + i).value);
-		fj.csoanyag.im1 = Number(document.getElementById("csoanyag" + i).value);
-		fj.phi.im1 = kerekit(phi.i);
-		fj.h.im1 = kerekit(h.i);
+		if (document.getElementById("elag" + i).checked) { fj.ag[im1] = 1; } else { fj.ag[im1] = 0; }
+		fj.fugg[im1] = Number(document.getElementById("fuggnum" + i).value);
+		fj.viz[im1] = Number(document.getElementById("viznum" + i).value);
+		fj.csox[im1] = Number(document.getElementById("csox" + i).value);
+		fj.csoy[im1] = Number(document.getElementById("csoy" + i).value);
+		fj.csoz[im1] = Number(document.getElementById("csoz" + i).value);
+		fj.csoanyag[im1] = Number(document.getElementById("csoanyag" + i).value);
+		fj.phi[im1] = kerekit(phi[i]);
+		fj.h[im1] = kerekit(h[i]);
 	}
 	var eztistaroldel = "ehhez=" + ehhezaproekthezkell + "&csakszamit=" + JSON.stringify(fj);
 
@@ -1199,7 +1198,7 @@ function csakszamit() {
 	while (adatstatusfust.hasChildNodes()) { adatstatusfust.removeChild(adatstatusfust.lastChild); }
 	szurke = document.createElement("div");
 	szurke.className = "szurke";
-	adattarolasfust = document.createTextNode("Loading calculations..");
+	adattarolasfust = document.createTextNode("Loading calculations...");
 	document.getElementById("adatstatusfust").appendChild(szurke);
 	szurke.appendChild(adattarolasfust);
 }
@@ -1336,11 +1335,11 @@ function csovek3d() {
 
 		renderer.render(scene, camera);
 
-		v1.i = new THREE.Vector3(0, 0, 0);
-		v2.i = new THREE.Vector3(0, 0, 0);
+		v1[i] = new THREE.Vector3(0, 0, 0);
+		v2[i] = new THREE.Vector3(0, 0, 0);
 
-		d1.i = dummyszemben[i - 1].localToWorld(v1.i);
-		dummy[i].position = csomeshtarto[i].position = d1.i;
+		d1[i] = dummyszemben[i - 1].localToWorld(v1[i]);
+		dummy[i].position = csomeshtarto[i].position = d1[i];
 		if (document.getElementById("elag" + i).checked && !document.getElementById("elag" + (i - 1)).checked) {
 			dummy[i].rotation.y = -90 * (Math.PI / 180) + dummy[i - 1].rotation.y;
 			dummy[i].rotation.x = 0;
@@ -1349,11 +1348,11 @@ function csovek3d() {
 			dummy[i].rotation.y = document.getElementById("viznum" + i).value * (Math.PI / 180);
 		}
 
-		vt1.i = new THREE.Vector3(0, 0, 0);
-		vt2.i = new THREE.Vector3(0, 0, 0);
+		vt1[i] = new THREE.Vector3(0, 0, 0);
+		vt2[i] = new THREE.Vector3(0, 0, 0);
 
-		dt1.i = dummyszembentukor[i - 1].localToWorld(vt1.i);
-		dummytukor[i].position = csomeshtartotukor[i].position = dt1.i;
+		dt1[i] = dummyszembentukor[i - 1].localToWorld(vt1[i]);
+		dummytukor[i].position = csomeshtartotukor[i].position = dt1[i];
 
 		if (document.getElementById("elag" + i).checked) {
 			if (!document.getElementById("elag" + (i - 1)).checked) {
@@ -1411,22 +1410,22 @@ function csovek3d() {
 		}
 		renderer.render(scene, camera);
 
-		d2.i = dummyszemben[i].localToWorld(v2.i);
-		csomeshtarto[i].lookAt(d2.i);
+		d2[i] = dummyszemben[i].localToWorld(v2[i]);
+		csomeshtarto[i].lookAt(d2[i]);
 
-		dt2.i = dummyszembentukor[i].localToWorld(vt2.i);
-		csomeshtartotukor[i].lookAt(dt2.i);
+		dt2[i] = dummyszembentukor[i].localToWorld(vt2[i]);
+		csomeshtartotukor[i].lookAt(dt2[i]);
 
 		renderer.render(scene, camera);
 
-		h.i = d2[i - 1].y - d1[i - 1].y;
+		h[i] = d2[i - 1].y - d1[i - 1].y;
 
 		vek1x = d2[i - 1].x - d1[i - 1].x;
 		vek1y = d2[i - 1].y - d1[i - 1].y;
 		vek1z = d2[i - 1].z - d1[i - 1].z;
-		vek2x = d2.i.x - d1.i.x;
-		vek2y = d2.i.y - d1.i.y;
-		vek2z = d2.i.z - d1.i.z;
+		vek2x = d2[i].x - d1[i].x;
+		vek2y = d2[i].y - d1[i].y;
+		vek2z = d2[i].z - d1[i].z;
 		ujvek1 = new THREE.Vector3(vek1x, vek1y, vek1z);
 		ujvek2 = new THREE.Vector3(vek2x, vek2y, vek2z);
 		ujvek3 = new THREE.Vector3();
@@ -1434,7 +1433,7 @@ function csovek3d() {
 		vektorosszeg = ujvek3.x + ujvek3.y + ujvek3.z;
 		arkoszfi = vektorosszeg / (csomesh[i - 1].scale.z * csomesh[i].scale.z); // ezzel szoptunk hatalmasat
 		fi = Math.acos(arkoszfi);
-		phi.i = fi / (Math.PI / 180) || 0; // iranyvaltashoz kell hasznalni a szamitasnal
+		phi[i] = fi / (Math.PI / 180) || 0; // iranyvaltashoz kell hasznalni a szamitasnal
 	}
 	if (inithivas || projektbetoltes) {
 		adattarolas();
@@ -1466,7 +1465,7 @@ function adattarolas() {
 					xmlhttp_fustjaratok.onreadystatechange = function () {
 						if (xmlhttp_fustjaratok.readyState == 4 && xmlhttp_fustjaratok.status == 200) {
 							ezjottvissza = xmlhttp_fustjaratok.responseText;
-							szamitas = JSON.stringify(ezjottvissza);
+							szamitas = JSON.parse(ezjottvissza);
 
 							while (adatstatusfust.hasChildNodes()) { adatstatusfust.removeChild(adatstatusfust.lastChild); }
 							diplayfustjaratok = document.createTextNode("Flue pipes are saved!");
@@ -1480,7 +1479,7 @@ function adattarolas() {
 							}
 							szumma();
 						}
-					};
+					}
 
 					var fj = new Object();
 					fj.ag = [];
@@ -1495,15 +1494,15 @@ function adattarolas() {
 
 					for (i = 1; i < csomesh.length; i++) {
 						im1 = i - 1;
-						if (document.getElementById("elag" + i).checked) { fj.ag.im1 = 1; } else { fj.ag.im1 = 0; }
-						fj.fugg.im1 = Number(document.getElementById("fuggnum" + i).value);
-						fj.viz.im1 = Number(document.getElementById("viznum" + i).value);
-						fj.csox.im1 = Number(document.getElementById("csox" + i).value);
-						fj.csoy.im1 = Number(document.getElementById("csoy" + i).value);
-						fj.csoz.im1 = Number(document.getElementById("csoz" + i).value);
-						fj.csoanyag.im1 = Number(document.getElementById("csoanyag" + i).value);
-						fj.phi.im1 = kerekit(phi.i);
-						fj.h.im1 = kerekit(h.i);
+						if (document.getElementById("elag" + i).checked) { fj.ag[im1] = 1; } else { fj.ag[im1] = 0; }
+						fj.fugg[im1] = Number(document.getElementById("fuggnum" + i).value);
+						fj.viz[im1] = Number(document.getElementById("viznum" + i).value);
+						fj.csox[im1] = Number(document.getElementById("csox" + i).value);
+						fj.csoy[im1] = Number(document.getElementById("csoy" + i).value);
+						fj.csoz[im1] = Number(document.getElementById("csoz" + i).value);
+						fj.csoanyag[im1] = Number(document.getElementById("csoanyag" + i).value);
+						fj.phi[im1] = kerekit(phi[i]);
+						fj.h[im1] = kerekit(h[i]);
 					}
 					var eztistaroldel = "fustjaratok=" + JSON.stringify(fj);
 
@@ -1514,7 +1513,7 @@ function adattarolas() {
 					while (adatstatusfust.hasChildNodes()) { adatstatusfust.removeChild(adatstatusfust.lastChild); }
 					szurke = document.createElement("div");
 					szurke.className = "szurke";
-					adattarolasfust = document.createTextNode("Saving flue pipes..");
+					adattarolasfust = document.createTextNode("Saving flue pipes...");
 					document.getElementById("adatstatusfust").appendChild(szurke);
 					szurke.appendChild(adattarolasfust);
 
@@ -1522,7 +1521,7 @@ function adattarolas() {
 					document.getElementById("csotorles").disabled = true;
 				}
 			}
-		};
+		}
 		if (document.getElementById("tuzfelcheck").checked) { var tuzfelcheckbool = 1; } else { var tuzfelcheckbool = 0; }
 		if (document.getElementById("tuzalapcheck").checked) { var tuzalapcheckbool = 1; } else { var tuzalapcheckbool = 0; }
 		if (document.getElementById("elag0").checked) { var elag0bool = 1; } else { var elag0bool = 0; }
@@ -1564,7 +1563,7 @@ function adattarolas() {
 		while (adatstatusprojekt.hasChildNodes()) { adatstatusprojekt.removeChild(adatstatusprojekt.lastChild); }
 		szurke = document.createElement("div");
 		szurke.className = "szurke";
-		adattarolasprojekt = document.createTextNode("Saving combustion chamber..");
+		adattarolasprojekt = document.createTextNode("Saving combustion chamber...");
 		document.getElementById("adatstatusprojekt").appendChild(szurke);
 		szurke.appendChild(adattarolasprojekt);
 	}
@@ -2681,11 +2680,11 @@ function ujcsoinit(adat, visszahivas) {
 
 		renderer.render(scene, camera);
 
-		v1.i = new THREE.Vector3(0, 0, 0);
-		v2.i = new THREE.Vector3(0, 0, 0);
+		v1[i] = new THREE.Vector3(0, 0, 0);
+		v2[i] = new THREE.Vector3(0, 0, 0);
 
-		d1.i = dummyszemben[i - 1].localToWorld(v1.i);
-		dummy[i].position = csomeshtarto[i].position = d1.i;
+		d1[i] = dummyszemben[i - 1].localToWorld(v1[i]);
+		dummy[i].position = csomeshtarto[i].position = d1[i];
 		if (document.getElementById("elag" + i).checked && !document.getElementById("elag" + (i - 1)).checked) {
 			dummy[i].rotation.y = -90 * (Math.PI / 180) + dummy[i - 1].rotation.y;
 			dummy[i].rotation.x = 0;
@@ -2694,11 +2693,11 @@ function ujcsoinit(adat, visszahivas) {
 			dummy[i].rotation.y = document.getElementById("viznum" + i).value * (Math.PI / 180);
 		}
 
-		vt1.i = new THREE.Vector3(0, 0, 0);
-		vt2.i = new THREE.Vector3(0, 0, 0);
+		vt1[i] = new THREE.Vector3(0, 0, 0);
+		vt2[i] = new THREE.Vector3(0, 0, 0);
 
-		dt1.i = dummyszembentukor[i - 1].localToWorld(vt1.i);
-		dummytukor[i].position = csomeshtartotukor[i].position = dt1.i;
+		dt1[i] = dummyszembentukor[i - 1].localToWorld(vt1[i]);
+		dummytukor[i].position = csomeshtartotukor[i].position = dt1[i];
 
 		if (document.getElementById("elag" + i).checked) {
 			if (!document.getElementById("elag" + (i - 1)).checked) {
@@ -2756,15 +2755,15 @@ function ujcsoinit(adat, visszahivas) {
 		}
 		renderer.render(scene, camera);
 
-		d2.i = dummyszemben[i].localToWorld(v2.i);
-		csomeshtarto[i].lookAt(d2.i);
+		d2[i] = dummyszemben[i].localToWorld(v2[i]);
+		csomeshtarto[i].lookAt(d2[i]);
 
-		dt2.i = dummyszembentukor[i].localToWorld(vt2.i);
-		csomeshtartotukor[i].lookAt(dt2.i);
+		dt2[i] = dummyszembentukor[i].localToWorld(vt2[i]);
+		csomeshtartotukor[i].lookAt(dt2[i]);
 
 		renderer.render(scene, camera);
 
-		h.i = d2[i - 1].y - d1[i - 1].y;
+		h[i] = d2[i - 1].y - d1[i - 1].y;
 
 		vek1x = d2[i - 1].x - d1[i - 1].x;
 		vek1y = d2[i - 1].y - d1[i - 1].y;
@@ -2779,7 +2778,7 @@ function ujcsoinit(adat, visszahivas) {
 		vektorosszeg = ujvek3.x + ujvek3.y + ujvek3.z;
 		arkoszfi = vektorosszeg / (csomesh[i - 1].scale.z * csomesh[i].scale.z); // ezzel szoptunk hatalmasat
 		fi = Math.acos(arkoszfi);
-		phi.i = fi / (Math.PI / 180) || 0; // iranyvaltashoz kell hasznalni a szamitasnal
+		phi[i] = fi / (Math.PI / 180) || 0; // iranyvaltashoz kell hasznalni a szamitasnal
 	}
 
 	visszahivas();

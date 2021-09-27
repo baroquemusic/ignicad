@@ -21,7 +21,7 @@ if (isset($_POST ['submitted'])) {
 	<title><?php echo $lang['PAGE_TITLE']; ?></title>
 	<script type='text/javascript' src='scripts/gen_validatorv31.js'></script>
 	<script type="text/javascript" src="scripts/pwdwidget.js"></script>
-	<script type="text/javascript" src="scripts/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript" src="scripts/jquery-1.9.1.min.js"></script>
 	<link rel="STYLESHEET" type="text/css" href="style/fg_membersite.css" />
 	<link rel="STYLESHEET" type="text/css" href="style/pwdwidget.css" />
     </head>

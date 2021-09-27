@@ -30,7 +30,7 @@ $_SESSION['balance'] = $vanneki - $elhasznalta;
     <head>
 	<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
 	<title><?php echo $lang['PAGE_TITLE']; ?></title>
-	<script src="./scripts/jquery-3.6.0.min.js"></script>
+	<script src="./scripts/jquery-1.9.1.min.js"></script>
 	<script src="./scripts/three.min.js"></script>
 	<script src="./scripts/TrackballControls.js"></script>
 	<script src="./scripts/ignea.js"></script>
