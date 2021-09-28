@@ -38,6 +38,12 @@ input[type='text'] {
 	width: 250px;
 }
 
+select, option {
+    overflow: visible;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 .error_message {
 	font-size: 0.7em;
 	color: #900;
